@@ -104,6 +104,8 @@ window.onload = function() {
 	fechaElement.innerHTML = dia + "/" + mes + "/" + año;
 };
 
+
+
 const empleadoLink = document.getElementById('empleado'),
   		inicioLink = document.getElementById('inicio'),
 		nominaLink = document.getElementById('nomina'),
@@ -113,7 +115,9 @@ const empleadoLink = document.getElementById('empleado'),
 		dashboardContainer = document.querySelector('.dashboard-container'),
 		empleadosContainer = document.querySelector('.empleados-container'),
 		nominaContainer = document.querySelector('.nomina-container'),
-		novedadesContainer = document.querySelector('.novedades-container');
+		novedadesContainer = document.querySelector('.novedades-container'),
+		seguridadContainer = document.querySelector('.seguridad-container'),
+		contratosContainer = document.querySelector('.contratos-container');
 
 inicioLink.addEventListener('click', function(event) {
 	event.preventDefault(); // Evita el comportamiento predeterminado del enlace
@@ -121,6 +125,8 @@ inicioLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'none';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'none';
 });
 
 empleadoLink.addEventListener('click', function(event) {
@@ -129,6 +135,8 @@ empleadoLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'block';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'none';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'none';
 });
 
 nominaLink.addEventListener('click', function(event) {
@@ -137,6 +145,8 @@ nominaLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'block';
 	novedadesContainer.style.display = 'none';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'none';
 });
 
 novedadesLink.addEventListener('click', function(event) {
@@ -145,8 +155,37 @@ novedadesLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'block';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'none';
 });
 
+seguridadLink.addEventListener('click', function(event) {
+	event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+	dashboardContainer.style.display = 'none';
+	empleadosContainer.style.display = 'none';
+	nominaContainer.style.display = 'none';
+	novedadesContainer.style.display = 'none';
+	seguridadContainer.style.display = 'block';
+	contratosContainer.style.display = 'none';
+});
+
+contratosLink.addEventListener('click', function(event) {
+	event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+	dashboardContainer.style.display = 'none';
+	empleadosContainer.style.display = 'none';
+	nominaContainer.style.display = 'none';
+	novedadesContainer.style.display = 'none';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'block';
+});
+
+const dashboardLink = document.getElementById("dashboardLink");
+const dashboardElement = document.getElementById("dashboard");
+
+dashboardLink.addEventListener("click", function() {
+	dashboardElement.style.display = "none";
+});
+		
 
 
 

@@ -49,7 +49,7 @@ body {
 
 /*Hide or Show content*/
 .dashboard-container{
-	display:none;
+	display:block;
 }
 
 .empleados-container{
@@ -61,7 +61,15 @@ body {
 }
 
 .novedades-container{
-	display: block;
+	display: none;
+}
+
+.seguridad-container{
+	display: none;
+}
+
+.contratos-container{
+	display: none;
 }
 
 /* SIDEBAR */
