@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerContrato()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION_TPC FROM TIPO_CONTRATO";
+    $sql = "SELECT ID_TIPO_CONTRATO, DESCRIPCION_TPC FROM TIPO_CONTRATO";
 
     $result = $conn->query($sql);
 

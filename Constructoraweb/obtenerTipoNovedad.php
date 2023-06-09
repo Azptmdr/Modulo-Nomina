@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerTipoNovedad()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION FROM TIPO_NOVEDAD";
+    $sql = "SELECT ID_TIPO_NOVEDAD, DESCRIPCION FROM TIPO_NOVEDAD";
 
     $result = $conn->query($sql);
 

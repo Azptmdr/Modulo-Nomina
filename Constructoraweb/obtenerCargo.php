@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerCargo()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION_CARGO FROM CARGO";
+    $sql = "SELECT ID_CARGO, DESCRIPCION_CARGO FROM CARGO";
 
     $result = $conn->query($sql);
 

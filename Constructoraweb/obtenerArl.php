@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerArl()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION_ARL FROM ARL";
+    $sql = "SELECT ID_ARL, DESCRIPCION_ARL FROM ARL";
 
     $result = $conn->query($sql);
 

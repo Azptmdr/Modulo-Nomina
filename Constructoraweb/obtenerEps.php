@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerEps()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION_EPS FROM EPS";
+    $sql = "SELECT ID_EPS, DESCRIPCION_EPS FROM EPS";
 
     $result = $conn->query($sql);
 

@@ -115,7 +115,7 @@
 					<li>
 						<i class='bx bxs-group'></i>
 						<span class="text">
-							<h3>30</h3>
+							<h3><?php include 'cantidadEmpleados.php'?></h3>
 							<p>Empleados</p>
 						</span>
 					</li>
@@ -170,6 +170,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php include 'listaEmpleado.php'; ?>
 							</tbody>
 						</table>
 						<!--FORMULARIO DE REGISTRO-->
@@ -181,14 +182,14 @@
                                 <form action="registrarEmpleado.php" method="POST" class="formulario-add" id="formularioRegistroEmpleado">
                                     <h2 class="create-account">Registra un empleado</h2>
                                     <p class="cuenta-gratis">Ingresa los datos del empleado</p>
-                                    <input type="text" name="primerNombre" placeholder="Primer nombre" pattern="[A-Za-z\s][0-9]{1,30}"
+                                    <input type="text" name="primerNombre" placeholder="Primer nombre" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
                                         required title="Por favor, ingresa solo letras, números y espacios">
-									<input type="text" name="segundoNombre" placeholder="Segundo nombre" pattern="[A-Za-z\s][0-9]{1,30}"
+									<input type="text" name="segundoNombre" placeholder="Segundo nombre" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
+                                         title="Por favor, ingresa solo letras, números y espacios">
+									<input type="text" name="primerApellido" placeholder="Primer apellido" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
                                         required title="Por favor, ingresa solo letras, números y espacios">
-									<input type="text" name="primerApellido" placeholder="Primer apellido" pattern="[A-Za-z\s][0-9]{1,30}"
-                                        required title="Por favor, ingresa solo letras, números y espacios">
-									<input type="text" name="SegundoApellido" placeholder="Segundo apellido" pattern="[A-Za-z\s][0-9]{1,30}"
-                                        required title="Por favor, ingresa solo letras, números y espacios">
+									<input type="text" name="segundoApellido" placeholder="Segundo apellido" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
+                                         title="Por favor, ingresa solo letras, números y espacios">
                                     <label for="salarioIntegral">¿Tiene salario integral?</label>
 										<select id="opciones" name="salarioIntegral" required>
 											<option value="">-- Selecciona una opción --</option>

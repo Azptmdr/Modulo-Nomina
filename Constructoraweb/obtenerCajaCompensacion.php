@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerCaja()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION_CMPNSACION FROM CJ_COMPENSACION";
+    $sql = "SELECT ID_CJ_COMPENSACION, DESCRIPCION_CMPNSACION FROM CJ_COMPENSACION";
 
     $result = $conn->query($sql);
 

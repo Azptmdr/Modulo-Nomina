@@ -7,7 +7,7 @@ $conn = $conexion->getConexion();
 function obtenerPension()
 {
     global $conn;
-    $sql = "SELECT DESCRIPCION_PENSION FROM PENSION";
+    $sql = "SELECT ID_PENSION, DESCRIPCION_PENSION FROM PENSION";
 
     $result = $conn->query($sql);
 
