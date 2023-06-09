@@ -72,7 +72,7 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
-
+//Permite marcar 1 vez una tarea como hecha
 const todoList = document.querySelector('.todo-list');
 const listItems = todoList.querySelectorAll('li');
 
@@ -88,6 +88,45 @@ listItems.forEach((item) => {
   });
 });
 
+//crea un recordatorio semanal y mensual en el sistema
+function createTodoLi(text) {
+    const li = document.createElement("li");
+    li.classList.add("not-completed");
+    li.innerHTML = `
+      <p>${text}</p>
+      <i class='bx bx-dots-vertical-rounded'></i>
+    `;
+    return li;
+  }
+
+  function addTodoLiEverySunday() {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+
+    if (dayOfWeek === 0) { // Domingo
+      const todoList = document.getElementById("todo-list");
+      const newLi = createTodoLi("Cosas por hacer (Domingo)");
+      todoList.appendChild(newLi);
+    }
+  }
+
+  function addTodoLiLastDayOfMonth() {
+    const today = new Date();
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    const currentDay = today.getDate();
+
+    if (currentDay === lastDayOfMonth) {
+      const todoList = document.getElementById("todo-list");
+      const newLi = createTodoLi("Cosas por hacer (Último día del mes)");
+      todoList.appendChild(newLi);
+    }
+  }
+
+  // Ejecutar las funciones al cargar la página
+  addTodoLiEverySunday();
+  addTodoLiLastDayOfMonth();
+
+//Date
 window.onload = function() {
 	// Obtener el elemento del párrafo donde se mostrará la fecha
 	var fechaElement = document.getElementById("fecha");
@@ -110,14 +149,18 @@ const empleadoLink = document.getElementById('empleado'),
   		inicioLink = document.getElementById('inicio'),
 		nominaLink = document.getElementById('nomina'),
 		novedadesLink = document.getElementById('novedades'),
+		liquidacionLink = document.getElementById('liquidacion'),
 		seguridadLink = document.getElementById('seguridad'),
 		contratosLink = document.getElementById('contratos'),
+		reportesLink = document.getElementById('reportes'),
 		dashboardContainer = document.querySelector('.dashboard-container'),
 		empleadosContainer = document.querySelector('.empleados-container'),
 		nominaContainer = document.querySelector('.nomina-container'),
 		novedadesContainer = document.querySelector('.novedades-container'),
+		liquidacionContainer = document.querySelector('.liquidacion-container'),
 		seguridadContainer = document.querySelector('.seguridad-container'),
-		contratosContainer = document.querySelector('.contratos-container');
+		contratosContainer = document.querySelector('.contratos-container'),
+		reportesContainer = document.querySelector('.reportes-container');
 
 inicioLink.addEventListener('click', function(event) {
 	event.preventDefault(); // Evita el comportamiento predeterminado del enlace
@@ -125,8 +168,10 @@ inicioLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'none';
 	seguridadContainer.style.display = 'none';
 	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'none';
 });
 
 empleadoLink.addEventListener('click', function(event) {
@@ -135,8 +180,10 @@ empleadoLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'block';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'none';
 	seguridadContainer.style.display = 'none';
 	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'none';
 });
 
 nominaLink.addEventListener('click', function(event) {
@@ -145,8 +192,10 @@ nominaLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'block';
 	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'none';
 	seguridadContainer.style.display = 'none';
 	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'none';
 });
 
 novedadesLink.addEventListener('click', function(event) {
@@ -155,8 +204,22 @@ novedadesLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'block';
+	liquidacionContainer.style.display = 'none';
 	seguridadContainer.style.display = 'none';
 	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'none';
+});
+
+liquidacionLink.addEventListener('click', function(event) {
+	event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+	dashboardContainer.style.display = 'none';
+	empleadosContainer.style.display = 'none';
+	nominaContainer.style.display = 'none';
+	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'block';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'none';
 });
 
 seguridadLink.addEventListener('click', function(event) {
@@ -165,8 +228,10 @@ seguridadLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'none';
 	seguridadContainer.style.display = 'block';
 	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'none';
 });
 
 contratosLink.addEventListener('click', function(event) {
@@ -175,16 +240,24 @@ contratosLink.addEventListener('click', function(event) {
 	empleadosContainer.style.display = 'none';
 	nominaContainer.style.display = 'none';
 	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'none';
 	seguridadContainer.style.display = 'none';
 	contratosContainer.style.display = 'block';
+	reportesContainer.style.display = 'none';
 });
 
-const dashboardLink = document.getElementById("dashboardLink");
-const dashboardElement = document.getElementById("dashboard");
-
-dashboardLink.addEventListener("click", function() {
-	dashboardElement.style.display = "none";
+reportesLink.addEventListener('click', function(event) {
+	event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+	dashboardContainer.style.display = 'none';
+	empleadosContainer.style.display = 'none';
+	nominaContainer.style.display = 'none';
+	novedadesContainer.style.display = 'none';
+	liquidacionContainer.style.display = 'none';
+	seguridadContainer.style.display = 'none';
+	contratosContainer.style.display = 'none';
+	reportesContainer.style.display = 'block';
 });
+
 		
 
 
