@@ -246,17 +246,17 @@
                                 <button class="close-button" id="close-button-modificar-empleado">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                 <form action="modificar-empleado.php" method="POST" class="formulario-add" id="formularioModificarEmpleado">
+                                 <form action="actualizarEmpleado.php" method="POST" class="formulario-add" id="formularioModificarEmpleado">
                                     <h2 class="create-account">Modifica un empleado</h2>
                                     <p class="cuenta-gratis">Modifica los datos del empleado</p>
-                                    <input type="text" name="primerNombre" placeholder="Primer nombre" pattern="[A-Za-z\s][0-9]{1,30}"
+                                    <input type="text" name="primerNombre" placeholder="Primer nombre" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
                                         required title="Por favor, ingresa solo letras, números y espacios">
-									<input type="text" name="segundoNombre" placeholder="Segundo nombre" pattern="[A-Za-z\s][0-9]{1,30}"
+									<input type="text" name="segundoNombre" placeholder="Segundo nombre" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
+                                         title="Por favor, ingresa solo letras, números y espacios">
+									<input type="text" name="primerApellido" placeholder="Primer apellido" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
                                         required title="Por favor, ingresa solo letras, números y espacios">
-									<input type="text" name="primerApellido" placeholder="Primer apellido" pattern="[A-Za-z\s][0-9]{1,30}"
-                                        required title="Por favor, ingresa solo letras, números y espacios">
-									<input type="text" name="segundoApellido" placeholder="Segundo apellido" pattern="[A-Za-z\s][0-9]{1,30}"
-                                        required title="Por favor, ingresa solo letras, números y espacios">
+									<input type="text" name="segundoApellido" placeholder="Segundo apellido" pattern="[A-Za-z0-9ñÑ\s]{1,30}"
+                                         title="Por favor, ingresa solo letras, números y espacios">
                                     <label for="salarioIntegral">¿Tiene salario integral?</label>
 										<select id="opciones" name="salarioIntegral" required>
 											<option value="">-- Selecciona una opción --</option>
@@ -270,33 +270,32 @@
 									<label for="eps">EPS</label>
 										<select id="opciones" name="eps" required>
 											<option value="">-- Selecciona una opción --</option>
-											
+											<?php include_once 'obtenerEps.php';?>
 										</select>
 									<label for="arl">ARL</label>
 										<select id="opciones" name="arl" required>
 											<option value="">-- Selecciona una opción --</option>
-											
+											<?php include_once 'obtenerArl.php';?>
 										</select>
 									<label for="pension">Pension</label>
 										<select id="opciones" name="pension" required>
 											<option value="">-- Selecciona una opción --</option>
-											
+											<?php include_once 'obtenerPension.php';?>
 										</select>
 									<label for="cargo">Cargo</label>
 										<select id="opciones" name="cargo" required>
 											<option value="">-- Selecciona una opción --</option>
-											
+											<?php include_once 'obtenerCargo.php';?>
 										</select>
 									<label for="tipoContrato">Tipo de contrato</label>
 										<select id="opciones" name="tipoContrato" required>
 											<option value="">-- Selecciona una opción --</option>
-											
+											<?php include_once 'obtenerTipoContrato.php';?>
 										</select>
 									<label for="cajaCompensacion">Caja de compensación</label>
-										<select id="opciones" name="cajaCompensacion" required>
+										<select id="opciones" name="cajaCompensacion">
 											<option value="">-- Selecciona una opción --</option>
-											<option value="notiene">Sin caja</option>
-											
+											<?php include_once 'obtenerCajaCompensacion.php';?>
 										</select>
                                     <input type="submit" value="Modificar empleado" id="modificar-empleado">
                                 </form>
@@ -308,7 +307,7 @@
                                 <button class="close-button" id="close-button-eliminar-empleado">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form class="formulario-add" id="formularioEliminarEmpleado">
+                                <form action="eliminarEmpleado.php" method="POST" class="formulario-add" id="formularioEliminarEmpleado">
                                     <h2 class="create-account">Elimina un Empleado</h2>
                                     <p class="cuenta-gratis">¿Estás seguro que deseas eliminar el empleado?</p>
                                     <input type="submit" value="Eliminar empleado" id="eliminar-empleado">
@@ -344,20 +343,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>1001</p>
-									</td>
-									<td>
-										<p>John Doe</p>
-									</td>
-									<td>
-										<p>$ 1'372.999</p>
-									</td>
-									<td>
-										<p>8/06/2023</p>
-									</td>
-								</tr>
+							<?php include_once 'mostrarHistorialNomina.php';?>
 							</tbody>
 						</table>
 					</div>
@@ -372,30 +358,13 @@
 								<tr>
 									<th>ID empleado</th>
 									<th>Nombre completo</th>
-									<th>Salario base</th>
 									<th>Transporte</th>
 									<th>Novedades remuneradas</th>
 									<th>Salario total</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>1001</p>
-									</td>
-									<td>
-										<p>John Doe</p>
-									</td>
-									<td>
-										<p>$ 1'372.999</p>
-									</td>
-									<td>
-										<p>$ 146.300</p>
-									</td>
-									<td>
-										<p>$ 370.300</p>
-									</td>
-								</tr>
+								<<?php include_once 'mostrarDetalleNomina.php';?>
 							</tbody>
 						</table>
 					</div>
@@ -419,16 +388,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1001</td>
-									<td>John Doe</td>
-									<td>4%</td>
-									<td>4%</td>
-									<td>8.33%</td>
-									<td>1%</td>
-									<td>8.33%</td>
-									<td>4.17%</td>
-								</tr>
+							<<?php include_once 'mostrarPrestaciones.php';?>
 							</tbody>
 						</table>
 					</div>

@@ -3,13 +3,44 @@ function mostrarFormularioEmpleado() {
     const formularioEmpleado = document.getElementById("formularioEmpleado");
     formularioEmpleado.style.display = "block";
   }
-  function modificarFormularioEmpleado() {
+  function modificarFormularioEmpleado(idEmpleado) {
     const modificarEmpleado = document.getElementById("modificarEmpleado");
     modificarEmpleado.style.display = "block";
+    $.ajax({
+      url: 'actualizarEmpleado.php',
+      method: 'POST',
+      data: {
+          idEmpleado: idEmpleado,
+          // Aquí pasas los demás datos actualizados del empleado
+      },
+      success: function(response) {
+          // Aquí puedes mostrar una notificación o realizar cualquier acción después de la actualización exitosa
+          console.log(response);
+      },
+      error: function(xhr, status, error) {
+          // Aquí puedes mostrar una notificación o manejar el error en caso de que ocurra un problema en la actualización
+          console.log(xhr.responseText);
+      }
+  });
   }
-  function eliminarFormularioEmpleado() {
+  function eliminarFormularioEmpleado(idEmpleado) {
     const eliminarEmpleado = document.getElementById("eliminarEmpleado");
     eliminarEmpleado.style.display = "block";
+    $.ajax({
+      url: 'eliminarEmpleado.php',
+      method: 'POST',
+      data: {
+          idEmpleado: idEmpleado
+      },
+      success: function(response) {
+          // Aquí puedes mostrar una notificación o realizar cualquier acción después de la eliminación exitosa
+          console.log(response);
+      },
+      error: function(xhr, status, error) {
+          // Aquí puedes mostrar una notificación o manejar el error en caso de que ocurra un problema en la eliminación
+          console.log(xhr.responseText);
+      }
+  });
   }
 
 function cerrarFormularioEmpleado() {
