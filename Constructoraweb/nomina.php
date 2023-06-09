@@ -170,31 +170,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<button id = "modify-fila" style="border: none; background-color: transparent;" onclick="modificarFormularioEmpleado()"><i class='bx bxs-edit-alt' ></i></button>
-										<button id = "modify-fila" style="border: none; background-color: transparent;" onclick="eliminarFormularioEmpleado()"><i class='bx bxs-trash' ></i></button>
-									</td>
-									<td>
-										<p>John Doe</p>
-									</td>
-									<td>
-										<p>NO</p>
-									</td>
-									<td>
-										<p>01/01/2023</p>
-									</td>
-									<td>
-										<p>31/01/2023</p>
-									</td>
-									<td>Sanitas</td>
-									<td>Positiva</td>
-									<td>Colpensiones</td>
-									<td>Agente de nómina</td>
-									<td>Prestación de servicios</td>
-									<td>Colsubsidio</td>
-								</tr>
-								
 							</tbody>
 						</table>
 						<!--FORMULARIO DE REGISTRO-->
@@ -203,7 +178,7 @@
                                 <button class="close-button" id="close-button-empleado">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form action="registro-empleado.php" method="POST" class="formulario-add" id="formularioRegistroEmpleado">
+                                <form action="registrarEmpleado.php" method="POST" class="formulario-add" id="formularioRegistroEmpleado">
                                     <h2 class="create-account">Registra un empleado</h2>
                                     <p class="cuenta-gratis">Ingresa los datos del empleado</p>
                                     <input type="text" name="primerNombre" placeholder="Primer nombre" pattern="[A-Za-z\s][0-9]{1,30}"
@@ -217,42 +192,47 @@
                                     <label for="salarioIntegral">¿Tiene salario integral?</label>
 										<select id="opciones" name="salarioIntegral" required>
 											<option value="">-- Selecciona una opción --</option>
-											<option value="Si">Si</option>
-											<option value="No">No</option>
+											<option value="S">Si</option>
+											<option value="N">No</option>
 										</select>
 									<label for="fechaIngreso">Fecha de ingreso</label>
 									<input type="date" id="fechaIngreso" name="fechaIngreso" required>
 									<label for="fechaVigencia">Fecha de vigencia</label>
-									<input type="date" id="fechaVigencia" name="fechaVigencia" required>
+									<input type="date" id="fechaVigencia" name="fechaVigencia">
 									<label for="eps">EPS</label>
 										<select id="opciones" name="eps" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerEps.php';?>
 											
 										</select>
 									<label for="arl">ARL</label>
 										<select id="opciones" name="arl" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerArl.php';?>
 											
 										</select>
 									<label for="pension">Pension</label>
 										<select id="opciones" name="pension" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerPension.php';?>
 											
 										</select>
 									<label for="cargo">Cargo</label>
 										<select id="opciones" name="cargo" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerCargo.php';?>
 											
 										</select>
 									<label for="tipoContrato">Tipo de contrato</label>
 										<select id="opciones" name="tipoContrato" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerTipoContrato.php';?>
 											
 										</select>
 									<label for="cajaCompensacion">Caja de compensación</label>
-										<select id="opciones" name="cajaCompensacion" required>
+										<select id="opciones" name="cajaCompensacion">
 											<option value="">-- Selecciona una opción --</option>
-											<option value="notiene">Sin caja</option>
+											<?php include_once 'obtenerCajaCompensacion.php';?>
 											
 										</select>
                                     <input type="submit" value="Registrar empleado" id="registrar-empleado">
@@ -431,8 +411,6 @@
 									<th>Nombre completo</th>
 									<th>% Salud</th>
 									<th>% Pension</th>
-									<th>% ARL</th>
-									<th>% Caja de compensación</th>
 									<th>% Cesantías</th>
 									<th>% Interés de cesantías</th>
 									<th>% Prima</th>
@@ -445,8 +423,6 @@
 									<td>John Doe</td>
 									<td>4%</td>
 									<td>4%</td>
-									<td>0%</td>
-									<td>0%</td>
 									<td>8.33%</td>
 									<td>1%</td>
 									<td>8.33%</td>
@@ -482,7 +458,6 @@
 									<th>Cantidad</th>
 									<th>Fecha de inicio</th>
 									<th>Fecha fin</th>
-									<th>Estado</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -502,7 +477,6 @@
 									<td>
 										<p>10/01/2023</p>
 									</td>
-									<td>Completada</td>
 								</tr>
 							</tbody>
 						</table>
@@ -518,17 +492,14 @@
                                     <label for="listaEmpleado">Selecciona el empleado</label>
 										<select id="opciones" name="listaEmpleado" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerEmpleados.php'; ?>
 										</select>
 									<label for="tipoNovedad">Tipo de novedad</label>
 										<select id="opciones" name="tipoNovedad" onchange="mostrarCampo()" required>
 											<option value="">-- Selecciona una opción --</option>
+											<?php include_once 'obtenerTipoNovedad.php'; ?>
 										</select>	
 									<input type="text" id="cantidad" name="cantidad" style="display: none;" placeholder="Cantidad de días" pattern="\d{3}" title="Por favor, ingrese únicamente números (Max. 3).">
-									<select id="opcionesCant" name="tipoNovedad" style="display: none;" required>
-										<option value="">-- Selecciona una opción --</option>
-										<option value="unidadDias">Días</option>
-										<option value="unidadHoras">Horas</option>
-									</select>
 									<input type="submit" value="Registrar novedad" id="registrar-novedad">
                                 </form>
                             </div>
@@ -688,11 +659,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>Positiva</p>
-									</td>
-								</tr>
+								<?php include_once 'listaArl.php'; ?>
 							</tbody>
 						</table>
 						<!--FORMULARIO DE REGISTRO-->
@@ -701,7 +668,7 @@
                                 <button class="close-button" id="close-button-arl">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form action="registro-arl.php" method="POST" class="formulario-add" id="formularioRegistroArl">
+                                <form action="registrarArl.php" method="POST" class="formulario-add" id="formularioRegistroArl">
                                     <h2 class="create-account">Registra una ARL</h2>
                                     <input type="text" name="arl" placeholder="Nombre ARL" pattern="[A-ZÑ]+" required title="Por favor, ingresa solo letras mayúsculas de la A-Z">
                                     <input type="submit" value="Registrar ARL" id="registrar-arl">
@@ -723,26 +690,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>Sura</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Sanitas</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Colmedica</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Famisanar</p>
-									</td>
-								</tr>
+								<?php include_once 'listaEps.php'; ?>
 							</tbody>
 						</table>
 						<!--FORMULARIO DE REGISTRO-->
@@ -751,7 +699,7 @@
                                 <button class="close-button" id="close-button-eps">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form action="registro-eps.php" method="POST" class="formulario-add" id="formularioRegistroEps">
+                                <form action="registrarEps.php" method="POST" class="formulario-add" id="formularioRegistroEps">
                                     <h2 class="create-account">Registra una EPS</h2>
                                     <input type="text" name="eps" placeholder="Nombre EPS" pattern="[A-ZÑ]+" required title="Por favor, ingresa solo letras mayúsculas de la A-Z">
                                     <input type="submit" value="Registrar EPS" id="registrar-eps">
@@ -773,26 +721,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>Colpensiones</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Colfondos</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Porvenir</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Skandia</p>
-									</td>
-								</tr>	
+								<?php include_once 'listaPension.php'; ?>	
 							</tbody>
 						</table>
 						<!--FORMULARIO DE REGISTRO-->
@@ -801,10 +730,41 @@
                                 <button class="close-button" id="close-button-pension">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form action="registro-pension.php" method="POST" class="formulario-add" id="formularioRegistroPension">
+                                <form action="registrarPension.php" method="POST" class="formulario-add" id="formularioRegistroPension">
                                     <h2 class="create-account">Registra una empresa de pensión</h2>
                                     <input type="text" name="pension" placeholder="Nombre empresa" pattern="[A-ZÑ]+" required title="Por favor, ingresa solo letras mayúsculas de la A-Z">
                                     <input type="submit" value="Registrar empresa" id="registrar-pension">
+                                </form>
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="table-data">
+					<div class="order">
+						<div class="head">
+							<h3>Caja de compensación</h3>
+							<i class='bx bx-plus-circle' style='color:#dba359' onclick="mostrarFormularioCJ()"></i>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th>Nombre</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php include_once 'listaCajaCompensacion.php'; ?>	
+							</tbody>
+						</table>
+						<!--FORMULARIO DE REGISTRO-->
+                        <div class="formulario-background" id="formularioCJ">
+                            <div class="formulario-container" id="formularioCJContainer">
+                                <button class="close-button" id="close-button-CJ">
+                                    <i class='bx bx-x-circle' style="color: white"></i>
+                                </button>
+                                <form action="registrarCajaCompensacion.php" method="POST" class="formulario-add" id="formularioRegistroCJ">
+                                    <h2 class="create-account">Registra una caja de compensación</h2>
+                                    <input type="text" name="cajaCompensacion" placeholder="Nombre empresa" pattern="[A-ZÑ]+" required title="Por favor, ingresa solo letras mayúsculas de la A-Z">
+                                    <input type="submit" value="Registrar caja" id="registrar-caja">
                                 </form>
                             </div>
                         </div>
@@ -834,11 +794,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<p>Indefinido</p>
-									</td>
-								</tr>
+								<?php include_once 'listaTipoContrato.php';?>
 							</tbody>
 						</table>
 						<!--FORMULARIO DE REGISTRO-->
@@ -847,7 +803,7 @@
                                 <button class="close-button" id="close-button-contrato">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form action="registro-contrato.php" method="POST" class="formulario-add" id="formularioRegistroContrato">
+                                <form action="registrarTipoContrato.php" method="POST" class="formulario-add" id="formularioRegistroContrato">
                                     <h2 class="create-account">Registra tipo de contrato</h2>
 									<input type="text" name="tipoContrato" placeholder="Tipo de contrato" pattern="[A-ZÑ]+" required title="Por favor, ingresa solo letras mayúsculas de la A-Z">
 									<input type="submit" value="Registra tipo de contrato" id="registra-contrato">
@@ -867,40 +823,12 @@
 								<tr>
 									<th>Cargo</th>
 									<th>Dependencia</th>
+									<th>Salario Base</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>
-										<p>Contador</p>
-									</td>
-									<td>
-										<p>Nómina</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Contador</p>
-									</td>
-									<td>
-										<p>Nómina</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Contador</p>
-									</td>
-									<td>
-										<p>Nómina</p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Contador</p>
-									</td>
-									<td>
-										<p>Nómina</p>
-									</td>
+								<?php include_once 'listaCargo.php';?>
 								</tr>
 							</tbody>
 						</table>
@@ -910,22 +838,17 @@
                                 <button class="close-button" id="close-button-cargo">
                                     <i class='bx bx-x-circle' style="color: white"></i>
                                 </button>
-                                <form action="registro-cargo.php" method="POST" class="formulario-add" id="formularioRegistroCargo">
+                                <form action="registrarCargo.php" method="POST" class="formulario-add" id="formularioRegistroCargo">
                                     <h2 class="create-account">Registra un cargo</h2>
 									<input type="text" name="cargo" placeholder="Nombre de cargo" pattern="[A-Za-z\s]{1,30}"
 									required title="Por favor, ingresa solo letras y espacios">                                    
 									<label for="dependencia">Seleccione la dependencia</label>
 										<select id="opciones" name="dependencias"  required>
 											<option value="">-- Selecciona una opción --</option>
-											<option value="nomina">Nómina</option>
-											<option value="compras">Compras</option>
-											<option value="recaudo">Recaudo</option>
-											<option value="cotizaciones">Cotizaciones</option>
-											<option value="proveedores">Proveedores</option>
-											<option value="cartera">Cartera</option>
-											<option value="ventas">Ventas</option>
-										</select>
-										<input type="submit" value="Registra cargo" id="registra-cargo">
+											<?php include_once 'obtenerDependencias.php';?>
+									</select>
+									<input type="text" name="salario-base" placeholder="Salario base" pattern="\d{1,10}" title="Por favor, ingresa un número de máximo 10 cifras" required>
+									<input type="submit" value="Registra cargo" id="registra-cargo">
 								</form>
                             </div>
                         </div>
@@ -981,6 +904,7 @@
 	<script src="js/arl.js"></script>
 	<script src="js/eps.js"></script>
 	<script src="js/pension.js"></script>
+	<script src="js/cajacompensacion.js"></script>
 	<script src="js/contrato.js"></script>
 	<script src="js/cargo.js"></script>
 </body>
